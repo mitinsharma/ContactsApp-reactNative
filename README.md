@@ -8,6 +8,26 @@ Use npm, yarn, npx
 
 ```bash
 npx react-native@latest init ContactsApp --template react-native-template-typescript
+yarn add @react-navigation/native react-native-screens react-native-safe-area-context
+yarn add @react-navigation/native-stack
+yarn add @react-navigation/drawer
+yarn add react-native-reanimated
+npx pod-install ios
+```
+
+## Usage
+
+```typescript
+import foobar
+
+# returns 'words'
+foobar.pluralize('word')
+
+# returns 'geese'
+foobar.pluralize('goose')
+
+# returns 'phenomenon'
+foobar.singularize('phenomena')
 ```
 
 ## Contributing
