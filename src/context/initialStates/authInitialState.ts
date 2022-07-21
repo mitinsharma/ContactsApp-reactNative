@@ -1,5 +1,5 @@
 export default {
-  isLoggedIn: true,
+  isLoggedIn: false,
   date: {},
   errors: null,
   loading: false
