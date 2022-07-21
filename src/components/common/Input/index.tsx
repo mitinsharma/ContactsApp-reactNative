@@ -10,7 +10,7 @@ const Input = ({label, icon, iconPosition, onChangeText, style, value, error, ..
     if(icon && iconPosition) {
       if(iconPosition === 'left') {
         return 'row';
-      } else {
+      } else if(iconPosition === 'right')  {
         return 'row-reverse';
       }
     }
@@ -33,7 +33,7 @@ const Input = ({label, icon, iconPosition, onChangeText, style, value, error, ..
         {label && <Text style={styles.label}>{label}</Text>}
         <View style={[
           styles.wrapper, 
-          {alignItems: icon ? 'center': 'baseline'},
+          {alignItems: icon ? 'center': 'stretch'},
           {flexDirection: getFlexDirection(), borderColor: getBorderColor()}
           ]}>
           <View>{icon && icon}</View>
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     paddingHorizontal: 5,
-    alignItems:'center',
     marginTop: 5,
+    alignItems:'center'
   },
   inputContainer: {
     paddingVertical: 12

@@ -5,8 +5,8 @@ import Input from '../../components/common/Input';
 
 
 const Login = () => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   return (
     <Container>
       <Input 
