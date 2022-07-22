@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: 5,
     marginTop: 5,
-    alignItems:'center'
+    width: '100%'
   },
   inputContainer: {
     paddingVertical: 12
