@@ -61,10 +61,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: 5,
     marginTop: 5,
-    width: '100%'
+    width: '100%',
   },
   inputContainer: {
-    paddingVertical: 12
+    paddingVertical: 15
   },
   label: {
     fontSize: 16
