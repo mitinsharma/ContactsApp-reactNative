@@ -8,9 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import colors from '../../assets/theme/colors';
 import { LOGIN } from '../../constants/routerNames';
 
-const index = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const index = ({form, errors, onSubmit, onChange}) => {
   const {navigate} = useNavigation();
 
   return (
@@ -24,7 +22,6 @@ const index = () => {
       
       <View>
 
-        <Text style={styles.title}>Welcome to ErContacts</Text>
         <Text style={styles.subTitle}>Create a free account</Text>
 
         <View style={styles.form}>
@@ -32,29 +29,37 @@ const index = () => {
             label='First name'
             placeholder='Enter First Name'
             iconPosition='right'
-            value={username}
-            onChangeText={setUsername}
+            onChangeText={ (value) => {
+              onChange({name: "firstName", value});
+            }}
+            error={errors.firstName}
           />
           <Input 
             label='Last Name'
             placeholder='Enter Last Name'
             iconPosition='right'
-            value={username}
-            onChangeText={setUsername}
+            onChangeText={ (value) => {
+              onChange({name: "lastName", value});
+            }}
+            error={errors.lastName}
           />
           <Input 
             label='Email'
             placeholder='Enter Email'
             iconPosition='right'
-            value={username}
-            onChangeText={setUsername}
+            onChangeText={ (value) => {
+              onChange({name: "email", value});
+            }}
+            error={errors.email}
           />
           <Input 
             label='Username'
             placeholder='Enter Username'
             iconPosition='right'
-            value={username}
-            onChangeText={setUsername}
+            onChangeText={ (value) => {
+              onChange({name: "username", value});
+            }}
+            error={errors.username}
           />
           <Input 
             label='Password'
@@ -62,10 +67,13 @@ const index = () => {
             icon={<Text>SHOW</Text>}
             iconPosition='right'
             secureTextEntry={true}
-            value={password}
-            onChangeText={setPassword}
+            onChangeText={ (value) => {
+              onChange({name: "password", value});
+            }}
+            error={errors.password}
           />
           <CustomButton 
+            onPress={onSubmit}
             primary
             title='Register'
           />
@@ -84,7 +92,7 @@ const index = () => {
 
 const styles = StyleSheet.create({
   logo: {
-    marginVertical: 80,
+    marginVertical: 25,
     alignSelf: 'center'
   },
   title: {
@@ -94,13 +102,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   }  ,
   subTitle: {
-    fontSize: 18,
+    fontSize: 20,
     textAlign: 'center',
-    paddingVertical: 5,
     fontWeight: '500'
   },
   form: {
-    paddingTop: 25
+    paddingTop: 10
   },
   createSection: {
     flexDirection: 'row',
