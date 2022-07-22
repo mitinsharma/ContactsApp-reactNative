@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import CustomButton from '../../components/common/CustomButton';
-import Input from '../../components/common/Input';
-import Container from '../../components/common/Container';
+import CustomButton from '../common/CustomButton';
+import Input from '../common/Input';
+import Container from '../common/Container';
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../../assets/theme/colors';
-import { REGISTER } from '../../constants/routerNames';
+import { LOGIN } from '../../constants/routerNames';
 
 const index = () => {
   const [username, setUsername] = useState('');
@@ -25,9 +25,30 @@ const index = () => {
       <View>
 
         <Text style={styles.title}>Welcome to ErContacts</Text>
-        <Text style={styles.subTitle}>Login</Text>
+        <Text style={styles.subTitle}>Create a free account</Text>
 
         <View style={styles.form}>
+          <Input 
+            label='First name'
+            placeholder='Enter First Name'
+            iconPosition='right'
+            value={username}
+            onChangeText={setUsername}
+          />
+          <Input 
+            label='Last Name'
+            placeholder='Enter Last Name'
+            iconPosition='right'
+            value={username}
+            onChangeText={setUsername}
+          />
+          <Input 
+            label='Email'
+            placeholder='Enter Email'
+            iconPosition='right'
+            value={username}
+            onChangeText={setUsername}
+          />
           <Input 
             label='Username'
             placeholder='Enter Username'
@@ -46,13 +67,13 @@ const index = () => {
           />
           <CustomButton 
             primary
-            title='Login'
+            title='Register'
           />
 
           <View style={styles.createSection}>
-            <Text style={styles.infoText}>Need to new account?</Text>
-            <TouchableOpacity onPress={() => {navigate(REGISTER)}}>
-              <Text style={styles.linkButton}>Register</Text>
+            <Text style={styles.infoText}>Already have an account?</Text>
+            <TouchableOpacity onPress={() => {navigate(LOGIN)}}>
+              <Text style={styles.linkButton}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
