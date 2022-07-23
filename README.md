@@ -14,6 +14,8 @@ yarn add @react-navigation/drawer
 yarn add react-native-reanimated
 npx pod-install ios
 yarn add  @types/react-native-dotenv
+yarn add axios
+yarn add @react-native-async-storage/async-storage
 ```
 
 ## Usage
