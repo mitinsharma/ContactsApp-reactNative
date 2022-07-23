@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
-import RegisterComponent  from '../../components/Register'
+import RegisterComponent  from '../../components/Register';
 
 
 const Register = () => {
+
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
