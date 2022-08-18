@@ -1,6 +1,10 @@
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import RegisterComponent  from '../../components/Register';
+import { LOGIN } from '../../constants/routerNames';
+import register, {clearAuthState} from '../../context/actions/auth/register';
+import { GlobalContext } from '../../context/reducers/Provider';
 import axiosInstance from '../../helpers/axiosInterceptor';
 
 
@@ -8,23 +12,38 @@ const Register = () => {
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const {navigate} = useNavigation();
+  const {authDispatch, authState:{error, loading, data}} = useContext(GlobalContext);
+
+  // console.log('authState', authState)
+
+  console.log('data:', data);
 
   useEffect(() => {
-    axiosInstance.get("/contacts").catch(err => {
-      console.log('Error :>> ', err.response);
-    })
-  }, []);
+     if(data) {
+         navigate(LOGIN);
+     }
+  },[data]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if(data || error) {
+        clearAuthState()(authDispatch);
+      }
+    },[data, error]),
+  );
 
   const onChange = ({name, value}) => {
-    setForm({...form, [name]: value});
-    
+    setForm({...form, [name]: value});  
+
+
     //remove errors
     if(value !== '') {
 
       if(name === 'password') {
-        if(value.length < 6) {
+        if(value.length < 8) {
           setErrors(prev => {
-            return {...prev, [name]: 'Password should be greater than 6 digits'}
+            return {...prev, [name]: 'Password should be greater than 8 digits'}
           });
         } else {
           setErrors(prev => {
@@ -45,7 +64,6 @@ const Register = () => {
 
   const onSubmit = () => {
     //validations
-    console.log('form: >>', form);
 
     if(!form.firstName) {
       setErrors(prev => {
@@ -72,13 +90,22 @@ const Register = () => {
         return {...prev, password: 'Please enter a password'}
       });
     }
-  }
 
+    if(Object.values(form).length === 5 &&
+      Object.values(form).every((item) => item.trim().length > 0) &&
+      Object.values(errors).every((item) => !item)
+    ) {
+      register(form)(authDispatch);
+    }
+  }
+  
   return <RegisterComponent 
     form={form} 
     errors={errors} 
     onChange={onChange}
     onSubmit={onSubmit}
+    error={error}
+    loading={loading}
   />;
 }
 

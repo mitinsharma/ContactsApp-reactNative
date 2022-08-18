@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import colors from '../../assets/theme/colors';
 import { LOGIN } from '../../constants/routerNames';
 
-const index = ({form, errors, onSubmit, onChange}) => {
+const index = ({form, errors, onSubmit, onChange, error, loading}) => {
   const {navigate} = useNavigation();
 
   return (
@@ -24,6 +24,9 @@ const index = ({form, errors, onSubmit, onChange}) => {
 
         <Text style={styles.subTitle}>Create a free account</Text>
 
+        <View>
+          {error &&<Text>{error.error}</Text>}
+        </View>
         <View style={styles.form}>
           <Input 
             label='First name'
@@ -32,7 +35,7 @@ const index = ({form, errors, onSubmit, onChange}) => {
             onChangeText={ (value) => {
               onChange({name: "firstName", value});
             }}
-            error={errors.firstName}
+            error={errors.firstName || error?.first_name?.[0]}
           />
           <Input 
             label='Last Name'
@@ -41,7 +44,7 @@ const index = ({form, errors, onSubmit, onChange}) => {
             onChangeText={ (value) => {
               onChange({name: "lastName", value});
             }}
-            error={errors.lastName}
+            error={errors.lastName|| error?.last_name?.[0]}
           />
           <Input 
             label='Email'
@@ -50,7 +53,7 @@ const index = ({form, errors, onSubmit, onChange}) => {
             onChangeText={ (value) => {
               onChange({name: "email", value});
             }}
-            error={errors.email}
+            error={errors.email || error?.email?.[0]}
           />
           <Input 
             label='Username'
@@ -59,7 +62,7 @@ const index = ({form, errors, onSubmit, onChange}) => {
             onChangeText={ (value) => {
               onChange({name: "username", value});
             }}
-            error={errors.username}
+            error={errors.username || error?.username?.[0]}
           />
           <Input 
             label='Password'
@@ -70,12 +73,14 @@ const index = ({form, errors, onSubmit, onChange}) => {
             onChangeText={ (value) => {
               onChange({name: "password", value});
             }}
-            error={errors.password}
+            error={errors.password || error?.password?.[0]}
           />
           <CustomButton 
             onPress={onSubmit}
             primary
             title='Register'
+            loading={loading}
+            disabled={loading}
           />
 
           <View style={styles.createSection}>

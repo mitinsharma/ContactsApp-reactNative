@@ -1,6 +1,6 @@
 export default {
   isLoggedIn: false,
-  date: {},
-  errors: null,
+  data: {},
+  error: null,
   loading: false
 }

@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     marginTop: 5,
     width: '100%',
+    backgroundColor: '#F0F3F4'
   },
   inputContainer: {
     paddingVertical: 15
